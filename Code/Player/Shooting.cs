@@ -1,12 +1,20 @@
 using UnityEngine;
 
-public class Shooting : MonoBehaviour, IShoot
+namespace Asteroids
 {
-    [SerializeField] private GameObject _bullet;
-    [SerializeField] private Transform _BulletStartPos;
-
-    public void Shoot()
+    public class Shooting : MonoBehaviour, IShoot
     {
-        var temAmmunition = Instantiate(_bullet, _BulletStartPos.position, Quaternion.identity);
+        private const int BulletsAmount = 25;
+        [SerializeField] private Transform _BulletStartPos;
+        private AmmunitionPool _ammunitionPool;
+        private void Start()
+        {
+            _ammunitionPool = new AmmunitionPool(BulletsAmount);
+        }
+        public void Shoot()
+        {
+            var bullet = _ammunitionPool.GetAmmunition("Bullet");
+            bullet.ActiveBullet(_BulletStartPos.position, _BulletStartPos.rotation);
+        }
     }
 }

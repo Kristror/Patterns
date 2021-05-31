@@ -1,4 +1,7 @@
-public interface IShoot
+namespace Asteroids
 {
-    public void Shoot();
+    public interface IShoot
+    {
+        public void Shoot();
+    }
 }

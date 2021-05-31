@@ -1,36 +1,39 @@
 using UnityEngine;
 
-public class InputController :IExecute
+namespace Asteroids
 {
-    Ship _ship;
-    Shooting _shooting;
-    Transform _player;
-    public InputController(Ship ship,Transform player, Shooting shooting)
+    public class InputController : IExecute
     {
-        _ship = ship;
-        _player = player;
-        _shooting = shooting;
-    }
-    
-    public void Execute()
-    {
-        _ship.Move(_player.transform.forward, Input.GetAxis("Vertical"), Time.deltaTime);
-
-        _ship.Rotate(Input.GetAxis("Horizontal"));
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        Ship _ship;
+        Shooting _shooting;
+        Transform _player;
+        public InputController(Ship ship, Transform player, Shooting shooting)
         {
-            _ship.AddAcceleration();
+            _ship = ship;
+            _player = player;
+            _shooting = shooting;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        public void Execute()
         {
-            _ship.RemoveAcceleration();
-        }
+            _ship.Move(_player.transform.forward, Input.GetAxis("Vertical"), Time.deltaTime);
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            _shooting.Shoot();
+            _ship.Rotate(Input.GetAxis("Horizontal"));
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                _ship.AddAcceleration();
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                _ship.RemoveAcceleration();
+            }
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                _shooting.Shoot();
+            }
         }
     }
 }

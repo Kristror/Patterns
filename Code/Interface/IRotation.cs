@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public interface IRotation
+namespace Asteroids
 {
-    void Rotate(float Horizontal);
+    public interface IRotation
+    {
+        void Rotate(float Horizontal);
+    }
 }

@@ -1,6 +1,10 @@
 using UnityEngine;
-public interface IMove
+
+namespace Asteroids
 {
-    float Speed { get; }
-    void Move(Vector3 forward, float Vertical, float deltaTime);
+    public interface IMove
+    {
+        float Speed { get; }
+        void Move(Vector3 forward, float Vertical, float deltaTime);
+    }
 }

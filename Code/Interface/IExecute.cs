@@ -1,4 +1,7 @@
-public interface IExecute
+namespace Asteroids
 {
-    public void Execute();
+    public interface IExecute
+    {
+        public void Execute();
+    }
 }

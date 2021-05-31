@@ -1,5 +1,8 @@
-public interface IEntity
+namespace Asteroids
 {
-    public void TakeDamage(int damage);
-    public void Death();
+    public interface IEntity
+    {
+        public void TakeDamage(int damage);
+        public void Death();
+    }
 }
