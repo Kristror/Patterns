@@ -4,11 +4,11 @@ namespace Asteroids
 {
     public class Bullet : MonoBehaviour
     {
-        [SerializeField] public float speed = 10;
-        [SerializeField] public int damage = 25;
-        [SerializeField] public float timeOfDes = 2.5f;
+        public float speed = 10;
+        public int damage = 25;
+        public float timeOfDes = 2.5f;
         private Transform _rootPool;
-        private Rigidbody _rb;
+        private Rigidbody _rigidBody;
         public Transform RootPool
         {
             get
@@ -23,7 +23,7 @@ namespace Asteroids
         }
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody>();
+            _rigidBody = GetComponent<Rigidbody>();
         }
         private void OnTriggerEnter(Collider other)
         {
@@ -39,14 +39,14 @@ namespace Asteroids
             transform.localRotation = rotation;
             gameObject.SetActive(true);
             transform.SetParent(null);
-            _rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+            _rigidBody.AddForce(transform.forward * speed, ForceMode.Impulse);
             Invoke("ReturnToPool", timeOfDes);
         }
         
         protected void ReturnToPool()
         {
-            _rb.velocity = Vector3.zero;
-            _rb.angularVelocity = Vector3.zero;
+            _rigidBody.velocity = Vector3.zero;
+            _rigidBody.angularVelocity = Vector3.zero;
 
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;

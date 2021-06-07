@@ -57,21 +57,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Code\Enemies\AsteroidFactory.cs" />
+    <Compile Include="Assets\Code\Enemies\SatelliteFactory.cs" />
     <Compile Include="Assets\Code\Enemies\Asteroid.cs" />
     <Compile Include="Assets\Code\Interface\IMove.cs" />
+    <Compile Include="Assets\Code\Game\GameObjectBuilder\GameObjectBuilder.cs" />
     <Compile Include="Assets\Code\Interface\IExecute.cs" />
     <Compile Include="Assets\Code\Enemies\Enemy.cs" />
     <Compile Include="Assets\Code\Enemies\EnemiesSpawner.cs" />
     <Compile Include="Assets\Code\Player\Movment\Rotation.cs" />
     <Compile Include="Assets\Code\Interface\IEnemyFactory.cs" />
+    <Compile Include="Assets\Code\Enemies\Satellite.cs" />
     <Compile Include="Assets\Code\Player\Movment\Acceliration.cs" />
     <Compile Include="Assets\Code\Enemies\Health.cs" />
+    <Compile Include="Assets\Code\Player\BulletBuilder.cs" />
     <Compile Include="Assets\Code\Interface\IRotation.cs" />
     <Compile Include="Assets\Code\Interface\IEntity.cs" />
     <Compile Include="Assets\Code\Game\NameManager.cs" />
     <Compile Include="Assets\Code\Player\PlayerStatus.cs" />
     <Compile Include="Assets\Code\Player\Movment\Movement.cs" />
     <Compile Include="Assets\Code\Player\Movment\PlayerMovement.cs" />
+    <Compile Include="Assets\Code\Game\GameObjectBuilder\GameObjectPhysicsBuilder.cs" />
     <Compile Include="Assets\Code\Player\AmmunitionPool.cs" />
     <Compile Include="Assets\Code\Interface\IShoot.cs" />
     <Compile Include="Assets\Code\Enemies\EnemyPool.cs" />
@@ -81,8 +86,11 @@
     <Compile Include="Assets\Code\BasePool.cs" />
     <Compile Include="Assets\Code\Player\Shooting.cs" />
     <Compile Include="Assets\Code\Player\Bullet.cs" />
-    <Compile Include="Assets\Code\Enemies\Satellite.cs" />
-    <Compile Include="Assets\Code\Enemies\SatelliteFactory.cs" />
+    <Compile Include="Assets\Code\Game\ObjectExtensions.cs" />
+    <Compile Include="Assets\Code\Game\GameObjectBuilder\GameObjectVisualBuilder.cs" />
+    <Compile Include="Assets\Code\Interface\IService.cs" />
+    <Compile Include="Assets\Code\Game\ServiceLocator.cs" />
+    <Compile Include="Assets\Code\Game\ServiceLocatorMonoBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
