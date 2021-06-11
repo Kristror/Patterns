@@ -4,7 +4,11 @@ namespace Asteroids
     {
         public float Max { get; }
         public float Current { get; private set; }
-
+        public Health(float max)
+        {
+            Max = max;
+            Current = max;
+        }
         public Health(float max, float current)
         {
             Max = max;

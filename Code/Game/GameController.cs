@@ -18,11 +18,8 @@ namespace Asteroids
             _enemiesSpawner = Object.FindObjectOfType<EnemiesSpawner>();
             _enemiesSpawner.SetEnemiesPool(_enemyPool);
             _enemiesSpawner.SetEnemiesTarget(player.gameObject);
-
-            _enemiesSpawner.SpawnEnemy(1);
-
-            ServiceLocator.SetService<EnemyPool>(_enemyPool);
-            
+            UnitFactory unitFactory = new UnitFactory();           
+            Enemy[] enemies = unitFactory.UnitsFromFile("D:/Загрузки/Учеба/Geek/Unity/Asteroids/Assets/Files/Units.json");
         }
         private void Update()
         {
