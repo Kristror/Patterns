@@ -1,30 +1,33 @@
+using System;
 using UnityEngine;
 
 namespace Asteroids
 {
+    [Serializable]
     public abstract class Enemy : MonoBehaviour
     {
         public Health _health;
         private Transform _rootPool;
         private float speed = 5;
-        private Rigidbody _rb;
+        private Rigidbody _rigidBody;
 
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody>();
+            _rigidBody = GetComponent<Rigidbody>();
         }
         public Health Health
         {
-            get
+            get =>  _health;
+            set
             {
+                _health = value;
                 if (_health.Current <= 0.0f)
                 {
                     ReturnToPool();
                 }
-                return _health;
             }
-            protected set => _health = value;
         }
+        
         public Transform RootPool
         {
             get
@@ -46,7 +49,7 @@ namespace Asteroids
             transform.SetParent(null);
             
             transform.LookAt(target);
-            _rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+            _rigidBody.AddForce(transform.forward * speed, ForceMode.Impulse);
         }
         protected void ReturnToPool()
         {

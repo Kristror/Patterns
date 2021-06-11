@@ -1,4 +1,5 @@
 using UnityEngine;
+using Asteroids.ServiceLocators;
 
 namespace Asteroids
 {
@@ -19,6 +20,9 @@ namespace Asteroids
             _enemiesSpawner.SetEnemiesTarget(player.gameObject);
 
             _enemiesSpawner.SpawnEnemy(1);
+
+            ServiceLocator.SetService<EnemyPool>(_enemyPool);
+            
         }
         private void Update()
         {
