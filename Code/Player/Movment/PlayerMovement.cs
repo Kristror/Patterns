@@ -1,4 +1,5 @@
 using UnityEngine;
+
 namespace Asteroids
 {
     public class PlayerMovement : MonoBehaviour
@@ -12,9 +13,12 @@ namespace Asteroids
 
         private void Awake()
         {
-            var moveTransform = new AccelerationMove(gameObject.GetComponent<Rigidbody>(), _speed, _acceleration);
+            //var moveRigidBody = new RigidBodyMovement(gameObject.GetComponent<Rigidbody>(), _speed);
+            var moveTransform = new TransformMovement(transform, _speed);
             var rotation = new Rotation(transform, _rotationAngle);
-            _ship = new Ship(moveTransform, rotation);
+            var acceleration = new AccelerationMove(moveTransform, _acceleration);
+
+            _ship = new Ship(moveTransform, rotation, acceleration);
         }
     }
 }
