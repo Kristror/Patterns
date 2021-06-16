@@ -2,23 +2,38 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    internal sealed class AccelerationMove : Movement
+    internal sealed class AccelerationMove : IAccelerate
     {
-        private readonly float _acceleration;
+        public float _acceleration;
+        private readonly IMove _movement;
 
-        public AccelerationMove(Rigidbody rigidbody, float speed, float acceleration) : base(rigidbody, speed)
+        public float Acceleration
         {
+            get => _acceleration;
+            set
+            {
+                if (value > 0)
+                {
+                    _acceleration = value;
+                }
+            }
+        }
+
+
+        public AccelerationMove(IMove movement, float acceleration)
+        {
+            _movement = movement;
             _acceleration = acceleration;
         }
 
         public void AddAcceleration()
         {
-            Speed += _acceleration;
+            _movement.Speed += _acceleration;
         }
 
         public void RemoveAcceleration()
         {
-            Speed -= _acceleration;
+            _movement.Speed -= _acceleration;
         }
     }
 }
