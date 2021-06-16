@@ -27,11 +27,11 @@ namespace Asteroids
         {
             _rigidBody = GetComponent<Rigidbody>();
         }
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision collision)
         {
-            if (other.gameObject.CompareTag("Enemy"))
+            if (collision.gameObject.CompareTag("Enemy"))
             {
-                other.gameObject.GetComponent<IEntity>().TakeDamage(damage);
+                collision.gameObject.GetComponent<Enemy>().TakeDamage(damage);
                 ReturnToPool();
             }
         }

@@ -24,7 +24,7 @@ namespace Asteroids
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                other.gameObject.GetComponent<IEntity>().TakeDamage(damage);
+                other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
                 Destroy(gameObject);
             }
         }

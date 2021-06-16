@@ -2,7 +2,7 @@ namespace Asteroids
 {
     public sealed class Health
     {
-        public float Max { get; }
+        public float Max { get; set; }
         public float Current { get; private set; }
         public Health(float max)
         {

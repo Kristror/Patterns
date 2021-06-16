@@ -7,6 +7,7 @@ namespace Asteroids
         [SerializeField] private float _speed;
         [SerializeField] private float _acceleration;
         [SerializeField] private float _rotationAngle;
+
         private Ship _ship;
 
         public Ship Ship => _ship;
