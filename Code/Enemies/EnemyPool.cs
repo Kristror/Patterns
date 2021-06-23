@@ -10,7 +10,6 @@ namespace Asteroids
     {
         private readonly Dictionary<string, HashSet<Enemy>> _enemyPool;
 
-
         public EnemyPool(int capacityPool) :base(capacityPool)
         {            
             _enemyPool = new Dictionary<string, HashSet<Enemy>>();
@@ -36,7 +35,7 @@ namespace Asteroids
             return result;
         }
 
-        private HashSet<Enemy> GetListEnemies(string type)
+        public HashSet<Enemy> GetListEnemies(string type)
         {
             return _enemyPool.ContainsKey(type) ? _enemyPool[type] : _enemyPool[type] = new HashSet<Enemy>();
         }
