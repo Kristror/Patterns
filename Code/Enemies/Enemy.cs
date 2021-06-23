@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Asteroids.Visitor;
 
 namespace Asteroids
 {
@@ -15,7 +16,8 @@ namespace Asteroids
         private Transform _rootPool;
         private float _speed = 5;
         private Rigidbody _rigidBody;
-        private Action<string,int> _onDeath;
+        public event Action<string,int> _onDeath;
+
         [SerializeField] private int _price = 100;
         private List<IAbility> _ability;
 
@@ -80,7 +82,6 @@ namespace Asteroids
             _ability = ability;
         }
         public IAbility this[int index] => _ability[index];
-
         public string this[Target index]
         {
             get
@@ -90,7 +91,6 @@ namespace Asteroids
             }
         }
         public int MaxDamage => _ability.Select(a => a.Damage).Max();
-
         public IEnumerable<IAbility> GetAbility()
         {
             while (true)
@@ -98,7 +98,6 @@ namespace Asteroids
                 yield return _ability[UnityEngine.Random.Range(0, _ability.Count)];
             }
         }
-
         public IEnumerator GetEnumerator()
         {
             for (int i = 0; i < _ability.Count; i++)
@@ -131,9 +130,13 @@ namespace Asteroids
             transform.LookAt(target);
             _rigidBody.AddForce(transform.forward * _speed, ForceMode.Impulse);
         }
+        public void Activate(IActiveEnemy value)
+        {
+            value.Visit(this);
+        }
         protected void ReturnToPool()
         {
-            _onDeath(this.ToString(),_price);
+            _onDeath(this.GetType().Name,_price);
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
             gameObject.SetActive(false);
@@ -147,10 +150,6 @@ namespace Asteroids
         public void TakeDamage(int damage)
         {
             ReturnToPool(); //только для теста потом изменю            
-        }
-        public void SetOnDeathAction(Action<string, int> action)
-        {
-            _onDeath = action;
         }
         public void DependencyInjectHealth(Health health)
         {

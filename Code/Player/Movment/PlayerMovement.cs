@@ -13,9 +13,8 @@ namespace Asteroids
         public Ship Ship => _ship;
 
         private void Awake()
-        {
-            //var moveRigidBody = new RigidBodyMovement(gameObject.GetComponent<Rigidbody>(), _speed);
-            var moveTransform = new TransformMovement(transform, _speed);
+        {            
+            var moveTransform = new TransformMovement(gameObject, _speed);
             var rotation = new Rotation(transform, _rotationAngle);
             var acceleration = new AccelerationMove(moveTransform, _acceleration);
 

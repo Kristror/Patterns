@@ -41,9 +41,15 @@ namespace Asteroids
                 {
                     _ship.RemoveAcceleration();
                 }
+
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     _UISystem.Pause();
+                }
+
+                if (Input.GetKeyDown(KeyCode.LeftControl))
+                {
+                    _ship.ChangeMovement();
                 }
 
                 if (Input.GetButtonDown("Fire1"))

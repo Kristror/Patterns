@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Asteroids.Visitor;
 
 namespace Asteroids
 {
@@ -25,6 +26,7 @@ namespace Asteroids
                 Transform spawnPoint = enemiesSpawmPoints[spawnPointNumber].transform;
                 var enemy = _enemyPool.GetEnemy("Asteroid");
                 enemy.ActiveEnemy(spawnPoint.position, spawnPoint.rotation, _target.transform.position);
+                enemy.Activate(new ConsoleDisplay());
             }
         }
     }

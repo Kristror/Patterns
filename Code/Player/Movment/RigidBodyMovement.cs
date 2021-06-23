@@ -2,17 +2,19 @@ using UnityEngine;
 
 namespace Asteroids
 {
-    public class RigidBodyMovement : IMove
+    public class RigidBodyMovement : Movement
     {
-        public float Speed { get; set; }
         private readonly Rigidbody _rigidbody;
-        public RigidBodyMovement(Rigidbody rigidbody, float speed)
+        public RigidBodyMovement(GameObject player, float speed) :base (player,speed)
         {
-            _rigidbody = rigidbody;
-            this.Speed = speed;
+            _rigidbody = player.GetComponent<Rigidbody>();
+        }
+        public override void ChangeMovement(Ship ship)
+        {
+            ship._moveImplementation = new TransformMovement(playerGameobject, Speed);
         }
 
-        public void Move(Vector3 forward, float Vertical, float deltaTime)
+        public override void Move(Vector3 forward, float Vertical, float deltaTime)
         {
             var speedOnTime = deltaTime * Speed;
             forward.z += Vertical * speedOnTime;

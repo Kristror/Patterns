@@ -4,7 +4,7 @@ namespace Asteroids
 {
     public sealed class Ship : IMove, IRotation, IAccelerate
     {
-        private readonly IMove _moveImplementation;
+        public Movement _moveImplementation;
         private readonly IAccelerate _accelirationImplementation;
         private readonly IRotation _rotationImplementation;
 
@@ -26,11 +26,15 @@ namespace Asteroids
             }
         }
 
-        public Ship(IMove moveImplementation, IRotation rotationImplementation, IAccelerate accelirationImplementation)
+        public Ship(Movement moveImplementation, IRotation rotationImplementation, IAccelerate accelirationImplementation)
         {
             _moveImplementation = moveImplementation;
             _rotationImplementation = rotationImplementation;
             _accelirationImplementation = accelirationImplementation;
+        }
+        public void ChangeMovement()
+        {
+            _moveImplementation.ChangeMovement(this);
         }
 
         public void Move(Vector3 forward, float Vertical, float deltaTime)

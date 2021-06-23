@@ -9,7 +9,6 @@ namespace Asteroids
     public sealed class EnemyPool :BasePool
     {
         private readonly Dictionary<string, HashSet<Enemy>> _enemyPool;
-        private Action<string, int> _action;
 
         public EnemyPool(int capacityPool) :base(capacityPool)
         {            
@@ -19,11 +18,6 @@ namespace Asteroids
             {
                 _rootPool = new GameObject(NameManager.POOL_ENEMY).transform;
             }
-        }
-
-        public void SetEnemiesDeathAction(Action<string, int> action)
-        {
-            _action = action;
         }
 
         public Enemy GetEnemy(string type)
@@ -41,7 +35,7 @@ namespace Asteroids
             return result;
         }
 
-        private HashSet<Enemy> GetListEnemies(string type)
+        public HashSet<Enemy> GetListEnemies(string type)
         {
             return _enemyPool.ContainsKey(type) ? _enemyPool[type] : _enemyPool[type] = new HashSet<Enemy>();
         }
@@ -55,7 +49,6 @@ namespace Asteroids
                 for (var i = 0; i < _capacityPool; i++)
                 {
                     var instantiate = Object.Instantiate(model);
-                    instantiate.SetOnDeathAction(_action);
                     ReturnToPool(instantiate.transform);
                     enemies.Add(instantiate);
                 }
